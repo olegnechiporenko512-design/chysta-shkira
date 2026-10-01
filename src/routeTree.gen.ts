@@ -10,8 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as DyakuiemoRouteImport } from './routes/dyakuiemo'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ApiLeadRouteImport } from './routes/api/lead'
 
 const IndexRoute = IndexRouteImport.update({
@@ -19,14 +19,14 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DyakuiemoRoute = DyakuiemoRouteImport.update({
   id: '/dyakuiemo',
   path: '/dyakuiemo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiLeadRoute = ApiLeadRouteImport.update({
@@ -37,35 +37,35 @@ const ApiLeadRoute = ApiLeadRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/privacy': typeof PrivacyRoute
   '/dyakuiemo': typeof DyakuiemoRoute
+  '/privacy': typeof PrivacyRoute
   '/api/lead': typeof ApiLeadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/privacy': typeof PrivacyRoute
   '/dyakuiemo': typeof DyakuiemoRoute
+  '/privacy': typeof PrivacyRoute
   '/api/lead': typeof ApiLeadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/privacy': typeof PrivacyRoute
   '/dyakuiemo': typeof DyakuiemoRoute
+  '/privacy': typeof PrivacyRoute
   '/api/lead': typeof ApiLeadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy' | '/dyakuiemo' | '/api/lead'
+  fullPaths: '/' | '/dyakuiemo' | '/privacy' | '/api/lead'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/dyakuiemo' | '/api/lead'
-  id: '__root__' | '/' | '/privacy' | '/dyakuiemo' | '/api/lead'
+  to: '/' | '/dyakuiemo' | '/privacy' | '/api/lead'
+  id: '__root__' | '/' | '/dyakuiemo' | '/privacy' | '/api/lead'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PrivacyRoute: typeof PrivacyRoute
   DyakuiemoRoute: typeof DyakuiemoRoute
+  PrivacyRoute: typeof PrivacyRoute
   ApiLeadRoute: typeof ApiLeadRoute
 }
 
@@ -78,18 +78,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dyakuiemo': {
       id: '/dyakuiemo'
       path: '/dyakuiemo'
       fullPath: '/dyakuiemo'
       preLoaderRoute: typeof DyakuiemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/lead': {
@@ -104,8 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PrivacyRoute: PrivacyRoute,
   DyakuiemoRoute: DyakuiemoRoute,
+  PrivacyRoute: PrivacyRoute,
   ApiLeadRoute: ApiLeadRoute,
 }
 export const routeTree = rootRouteImport
